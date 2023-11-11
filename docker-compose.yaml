@@ -1,0 +1,18 @@
+
+version: '3.8'
+services:
+  grab-server:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "6666:6666"
+    environment:
+      - PORT=6666
+      - ENV_VAR_NAME=env_var_value
+      - dbFile=file:./prod.db
+    command: ["npm", "start"]
+    # command: ["npx prisma generate --schema=./prisma/schema.prod.prisma && npx prisma migrate dev --name initial && npx prisma migrate deploy && npm start"]
+
+volumes:
+  grab-server:

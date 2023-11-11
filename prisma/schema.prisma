@@ -1,0 +1,41 @@
+generator client {
+    provider = "prisma-client-js"
+  }
+  
+  datasource db {
+    provider = "sqlite"
+    url      =   env("dbFile")
+  }
+
+  
+  model User {
+    id Int @id @default(autoincrement()) 
+    phone String @unique
+    name String
+    orders Rides[] @relation("orders")
+    bookings Rides[] @relation("bookings")
+    userType String  @default("CUSTOMER")
+    maxDistance Float  @default(20) //km
+    socketId String?
+  }
+  
+  model Rides {
+    id Int @id @default(autoincrement())
+    phone String?
+    driver User? @relation("orders", fields: [driverId], references: [id])
+    driverId Int?
+    customer User? @relation("bookings", fields: [customerId], references: [id])
+    customerId Int?
+    startLocation String
+    endLocation  String
+    startAddress String 
+    endAddress String
+    startTime DateTime?
+    endTime DateTime? 
+    scheduleTime DateTime?
+    status String @default("PENDING")
+    createdAt DateTime @default(now())
+    updatedAt DateTime? @updatedAt
+    distance Float
+    price Float?
+  }
