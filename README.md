@@ -1,4 +1,4 @@
-# Full Stack Grab using Reactjs, Socket.io, Node.js Flutter
+# Full Stack Grab using Reactjs, Socket.io, Node.js Flutter, docker , jenkin pipeline
 
 # Enviroments
 
