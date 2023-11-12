@@ -2,6 +2,8 @@
 # Use the official Node 18 image as the base image
 FROM node:18
 
+ENV DB_HOST=dbFile=file:./prod.db
+
 # Set the working directory to /app
 WORKDIR /app
 
@@ -13,8 +15,6 @@ RUN npm install
 
 # Copy the rest of the application code to the container
 COPY . .
-
-RUN npx prisma generate
 
 RUN npx prisma generate
 
